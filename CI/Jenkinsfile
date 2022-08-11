@@ -7,7 +7,10 @@ pipeline {
     stages {      
         stage('Build maven ') {
             steps { 
-                    sh 'pwd'      
+                    sh 'pwd' 
+                    dir('CI'){
+                      sh 'pwd'
+                    }     
                     sh 'mvn  clean install package'
             }
         }
