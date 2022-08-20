@@ -10,8 +10,8 @@ pipeline {
                     sh 'pwd' 
                     dir('CI'){
                       sh 'pwd'
+                      sh 'mvn  clean install package'
                     }     
-                    sh 'mvn  clean install package'
             }
         }
         
