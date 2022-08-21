@@ -72,9 +72,9 @@ jobs:
     - uses: actions/download-artifact@v1
       with:
           name: Package
-          path: tmp/
+          path: app/
     - name: list workspace
-      run: ls -la /home/runner/work/petclinic/petclinic/tmp/
+      run: ls -la /home/runner/work/petclinic/petclinic/app/
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
