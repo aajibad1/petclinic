@@ -45,7 +45,7 @@ jobs:
         echo "$GITHUB.REPOSITORY"
         echo "$working-directory"
         mvn clean install package
-        mkdir staging && cp target/*.jar staging
+        mkdir staging && cp -r target/*.jar staging
     - uses: actions/upload-artifact@v3
       with:
         name: Package
@@ -53,6 +53,7 @@ jobs:
       
       
     - name: Publish to GitHub Packages Apache Maven
+      working-directory: ./app
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
       env:
         GITHUB_TOKEN: ${{ github.token }}
