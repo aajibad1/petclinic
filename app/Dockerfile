@@ -1,3 +1,4 @@
 FROM openjdk:11.0.5-jdk
-ADD *.jar app.jar
+RUN pwd
+ADD ../tmp/*.jar app.jar
 ENTRYPOINT java -jar app.jar
