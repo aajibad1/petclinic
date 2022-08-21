@@ -39,17 +39,20 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-    - name: Build with Maven
+    - name: Step 1 - Create a temporary artifact downloads folder
+        run: mkdir tmp
+
+    - name: step 2 - Build with Maven and  Add artifacts to publish to the temp folder
       working-directory: ./app
       run: |
-        echo "$GITHUB.REPOSITORY"
-        echo "$working-directory"
         mvn clean install package
-        mkdir staging && cp -r target/*.jar staging
-    - uses: actions/upload-artifact@v3
+        cp -r target/*.jar ../tmp
+        
+    - name: Step 3 - Use the Upload Artifact GitHub Action
+      uses: actions/upload-artifact@v3
       with:
         name: Package
-        path: staging
+        path: tmp
       
       
     # - name: Publish to GitHub Packages Apache Maven
@@ -78,7 +81,7 @@ jobs:
         # Build and tag the image
         docker build \
           -t $CONTAINER_IMAGE \
-          -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CONTAINER_IMAGE ./staging
+          -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CONTAINER_IMAGE ./tmp
            
     # Add additional steps here like scanning of image
 
