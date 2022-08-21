@@ -20,14 +20,15 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   CONTAINER_IMAGE: app:${{ github.sha }}
   working-directory: ./app
-    permissions:
-      contents: read
-      packages: write
+  
 
 jobs:
   build-and-push:
     name: Build and deploy
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
 
     - name: Checkout
@@ -56,7 +57,7 @@ jobs:
       with:
         name: copy artifact
         path: ${{ github.workspace }}
-        
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
