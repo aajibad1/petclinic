@@ -45,7 +45,6 @@ jobs:
       run: mkdir tmp
 
     - name: step 2 - Build with Maven and  Add artifacts to publish to the temp folder
-      cache: 'maven'
       working-directory: ./app
       run: |
         ls -l ../tmp
@@ -53,7 +52,6 @@ jobs:
         cp -r target/*.jar ../tmp
         
     - name: Step 3 - Use the Upload Artifact GitHub Action
-      cache: 'maven'
       uses: actions/upload-artifact@v3
       with:
         name: Package
