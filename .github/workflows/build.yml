@@ -57,8 +57,8 @@ jobs:
 
     
 
-  deploy:
-    name: Deploy
+  push:
+    name: push artifact
     needs: [build]
     runs-on: ubuntu-latest
 
@@ -101,7 +101,8 @@ jobs:
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
     - name: lint helm chart
-      run: helm lint ./app/helm
+      working-directory: ./app
+      run: helm lint ./helm
 
     - name: Package and push helm chart to Amazon ECR
       working-directory: ./app/helm
