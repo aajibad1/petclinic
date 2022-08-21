@@ -40,11 +40,12 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Step 1 - Create a temporary artifact downloads folder
-        run: mkdir tmp
+      run: mkdir tmp
 
     - name: step 2 - Build with Maven and  Add artifacts to publish to the temp folder
       working-directory: ./app
       run: |
+        ls -l ../tmp
         mvn clean install package
         cp -r target/*.jar ../tmp
         
