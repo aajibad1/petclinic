@@ -1,4 +1,4 @@
 FROM openjdk:11.0.5-jdk
-RUN echo "$PWD"
+RUN echo "$(pwd)"
 ADD ./tmp/*.jar app.jar
 ENTRYPOINT java -jar app.jar
