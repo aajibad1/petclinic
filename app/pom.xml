@@ -130,6 +130,7 @@
   </dependencies>
 
   <build>
+    <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -170,8 +171,6 @@
           </execution>
         </executions>
       </plugin>
-
-      
 
       <!-- Spring Boot Actuator displays build-related information if a git.properties
         file is present at the classpath -->
