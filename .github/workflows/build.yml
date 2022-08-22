@@ -111,7 +111,7 @@ jobs:
         REPOSITORY: helm
       run: |
         helm package petclinic
-        helm push petclinic-0.1.0.tgz oci://$REGISTRY/
+        helm push petclinic-0.1.0.tgz oci://$REGISTRY/$REPOSITORY/
 
     # - name: Build and tag the image
     #   id: build-image
