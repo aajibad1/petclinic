@@ -111,7 +111,7 @@ jobs:
         REPOSITORY: heml-chart
       run: |
         helm package petclinic
-        helm push petclinic-0.1.0.tgz oci://$REGISTRY
+        helm push ./petclinic-0.1.0.tgz oci://$REGISTRY/
 
     # - name: Build and tag the image
     #   id: build-image
