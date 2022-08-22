@@ -104,6 +104,10 @@ jobs:
       working-directory: ./app
       run: helm lint ./petclinic
 
+    - name: Login to Amazon ECR2
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
     - name: Package and push helm chart to Amazon ECR
       working-directory: ./app
       env:
@@ -111,7 +115,7 @@ jobs:
         REPOSITORY: heml-chart
       run: |
         helm package petclinic
-        helm push ./petclinic-0.1.0.tgz oci://$REGISTRY/
+        helm push petclinic-0.1.0.tgz oci://$REGISTRY/
 
     # - name: Build and tag the image
     #   id: build-image
