@@ -30,4 +30,5 @@ jobs:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: app
         with:
+          plugins: "https://github.com/jkroepke/helm-secrets"
           command: helm upgrade  --install petclinic petclinic --set image.repository=$REGISTRY/$REPOSITORY --set image.tag=${{ github.sha }} --wait
