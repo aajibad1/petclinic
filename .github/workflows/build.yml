@@ -104,14 +104,14 @@ jobs:
       working-directory: ./app
       run: helm lint ./petclinic
 
-    - name: Package and push helm chart to Amazon ECR
-      working-directory: ./app
-      env:
-        REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        REPOSITORY: helm
-      run: |
-        helm package petclinic
-        helm push petclinic-0.1.0.tgz oci://$REGISTRY/$REPOSITORY/
+    # - name: Package and push helm chart to Amazon ECR
+    #   working-directory: ./app
+    #   env:
+    #     REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+    #     REPOSITORY: helm
+    #   run: |
+    #     helm package petclinic
+    #     helm push petclinic-0.1.0.tgz oci://$REGISTRY/$REPOSITORY/
 
     # - name: Build and tag the image
     #   id: build-image
